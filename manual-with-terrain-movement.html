@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Panzer Marshal Manual</title>
+        <meta name="author" content="Nicu Pavel, npavel@linuxconsulting.ro"/>
+        <meta name="description" content="Turn Based World War 2 Strategy Game Manual"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="icon" href="resources/ui/page/icon/icon.png" type="image/png"/>
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <script>
+            function $(id) { return document.getElementById(id); }
+
+            function addTag(parent, tag)
+            {
+                var e;
+                var t = document.createElement(tag);
+
+                if (typeof(parent) === 'string') {	e = $(parent); }
+                else {e = parent;}
+
+                if (e !== null)
+                    e.appendChild(t);
+
+                return t;
+            }
+
+        </script>
+
+        <style>
+            @font-face
+            {
+                font-family: unitInfo;
+                font-weight: bold;
+                src: url('resources/fonts/m04b.TTF') format('truetype');
+            }
+
+            @font-face
+            {
+                font-family: coreUnitFont;
+                src: url('resources/fonts/m04.ttf') format('truetype'); /* Good 8px Outlined font */
+            }
+
+            /* font for weather, ground conditions and terrain type */
+            @font-face
+            {
+                font-family: 'openpanzer';
+                src:url('resources/fonts/openpanzer.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            /* font for menu widgets */
+            @font-face
+            {
+                font-family: 'openpanzer-menu';
+                src:url('resources/fonts/openpanzer-menu.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+            body {
+                font-family: 'Roboto', Arial;
+            }
+            .title {
+                font-weight: bold;
+                font-size: 18px;
+                text-align: center;
+                color: #33ccff;
+            }
+
+            .subtitle {
+                font-weight: normal;
+                font-size: 16px;
+                text-align: center;
+                color: #f90;
+            }
+
+            .text {
+                font-weight: normal;
+                font-family: Roboto, sans-serif;
+                font-size: 13px;
+            }
+
+            .header_container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+
+            }
+            .break {
+                flex-basis: 100%;
+                height: 0;
+            }
+
+
+            .header {
+                font-family: 'Roboto', sans-serif;
+                font-weight: bold;
+                border: solid 3px #f90;
+                border-radius: 8px;
+                box-shadow: 1px 2px 3px rgba(0,0,0,.75), inset 0 0 0 5px rgba(0,0,0,.16);
+                background-color: #000;
+                background-repeat: no-repeat;
+                color: #f8e064;
+                height: 40px;
+                flex-grow: 1;
+                position: relative;
+                left: -20px;
+                z-index: 19;
+                line-height: 38px;
+                padding-left: 40px;
+            }
+
+            .icon_round, .icon_misc_round {
+                width: 60px;
+                height: 60px;
+                min-width: 60px;
+                min-height: 60px;
+                line-height: 60px;
+                border: solid 3px #f90;
+                border-radius: 50%;
+                box-shadow: 1px 2px 3px rgba(0,0,0,.75), inset 0 0 0 5px rgba(0,0,0,.16);
+                font-family: openpanzer-menu;
+                font-weight: normal;
+                font-size: 40px;
+                text-align: center;
+                text-shadow: none;
+                background-color: #000;
+                background-repeat: no-repeat;
+                color: #f8e064;
+                z-index:20;
+                margin: 0 auto;
+            }
+
+            .boxStr {
+                padding: 4px;
+                border: 1px solid white;
+                color:white;
+            }
+
+            .bgBlack {
+                background-color: black;
+            }
+
+            .bgGreen {
+                background-color: #808000;
+            }
+
+            .icon_misc_round {
+                font-family: openpanzer;
+            }
+
+            header, .row {
+                display: flex;  /* aligns all child elements (flex items) in a row */
+            }
+
+            .col {
+                flex: 1;        /* distributes space on the line equally among items */
+            }
+
+            .iconsMenu {
+                font-family: openpanzer-menu;
+            }
+
+            .iconsMain {
+                font-family: openpanzer;
+            }
+
+            .fontCore {
+                font-family: coreUnitFont;
+            }
+
+            .fontAux {
+                font-family: unitInfo;
+            }
+
+            .blue {
+                color: #33ccff;
+            }
+
+            .grey {
+                color: #BDBDBD
+            }
+
+            .textCenter {
+                text-align: center;
+            }
+
+            .tblStyle1 {
+                border: solid 1px #DDEEEE;
+                border-collapse: collapse;
+                border-spacing: 0;
+                font-size: 13px;
+            }
+            .tblStyle1 thead th {
+                background-color: #DDEFEF;
+                border: solid 1px #DDEEEE;
+                color: #336B6B;
+                padding: 10px;
+                text-align: left;
+                text-shadow: 1px 1px 1px #fff;
+            }
+            .tblStyle1 tbody td {
+                border: solid 1px #DDEEEE;
+                color: #333;
+                padding: 10px;
+                /*text-shadow: 1px 1px 1px #fff;*/
+            }
+
+        </style>
+    </head>
+  <body>
+  <div>
+      <div class="title"> Unit</div>
+      <div><img src="resources/ui/manual/unit.png"></div>
+      <div>
+          <table class="tblStyle1">
+              <tr><td colspan="2">Can attack ?</td></tr>
+              <tr><td><img src="resources/ui/indicators/unit-fire.png"></td><td>Yes</td></tr>
+              <tr><td><img src="resources/ui/indicators/unit-fire-no-ammo.png"></td><td>No. No ammo.</td></tr>
+              <tr><td>&nbsp;</td><td>No. Already attacked.</td></tr>
+
+          </table>
+
+          <table  class="tblStyle1">
+              <tr><td colspan="4">Unit Strength</td></tr>
+              <tr><td colspan="2"></td><td>Axis</td> <td>Allies</td></tr>
+              <tr><td>Core</td><td></td><td><span class="fontCore boxStr bgBlack">10</span></td><td><span class="fontCore boxStr bgGreen">10</span></td></tr>
+              <tr><td></td><td>moved</td><td><span class="fontCore boxStr bgBlack grey">10</span></td><td><span class="fontCore boxStr bgGreen grey">10</span></td></tr>
+              <tr><td>Auxiliary</td><td></td><td><span class="fontAux boxStr bgBlack">10</span></td><td><span class="fontAux boxStr bgGreen">10</span></td></tr>
+              <tr><td></td><td>moved</td><td><span class="fontAux boxStr bgBlack grey">10</span></td><td><span class="fontAux boxStr bgGreen grey">10</span></td></tr>
+          </table>
+
+          <table class="tblStyle1">
+              <tr><td colspan="2"></td>Unit Leaders</tr>
+              <tr><td>Axis</td><td>Allies</td></tr>
+              <tr><td><img src="resources/ui/indicators/unit-leader-axis.png"></td><td><img src="resources/ui/indicators/unit-leader-allied.png"></td></tr>
+
+          </table>
+      </div>
+
+      <div class="title"> General Concepts</div>
+      <div class="subtitle">Turns</div>
+      <div class="text">
+          Battles (scenarios) last a certain number of turns and the current turn number and maximum turns is shown in he top left corner of the screen.
+          In each turn you, your allies, and your opponents are given a chance to move units, attack enemy units, resupply units, and
+          so on. When you finished all your orders you can press the End Turn button <span class="icon_round">t</span> from the right side of the screen.
+      </div>
+      <div class="subtitle">Combat</div>
+      <div class="text">
+      The attack reticule appears when you pass the mouse pointer over an enemy within the firing range of your
+      selected unit or for touch enabled devices automatically for all units in attack range.
+          On this reticule are given the expected loss in strength points for both sides; your projected
+      casualties are listed below your flag, and your enemies losses are listed under the flag of that unit's country.
+      Keep in mind that these are estimated losses; although based on the relative attack and defense values,
+      terrain, and experience modifiers, they may not be the same in actual battle! In any conflict there is a random
+      factor and besides that the estimated values don't take in account all the factors. It's up to you to decide the actual results.
+          If you decide to attack, click when the attack reticule is over the enemy unit.
+      As battle ensues, unit losses are indicated on the unit strength plaques, and loses are displayed by a popping number over each unit.
+          A unit may move and attack, or attack then move, with the exception of artillery,
+      air defense, or anti-tank units which cannot attack after moving (with exception of self-propelled units).
+      </div>
+      <div class="subtitle">Core and Auxiliary Units</div>
+      <div class="text">
+      In campaign play, your forces for a battle may contain both core and auxiliary units. Core units are the heart
+      of your army, units which you deploy for every battle, and go with you to each new scenario. However, you may also
+      receive or be put in command of auxiliaries, units which are given to you for the duration of a particular conflict,
+      to aid you in your mission.  Auxiliaries do not continue to the next battle with the rest of your army.
+      </div>
+      <div class="subtitle"> Zone of control</div>
+      <div class="text">
+          A unit exerts a zone of control over the six hexes around it. Surface unit's zones of control affect only surface
+          units and air unit's zones of control affect only air units. When you move a unit into the zone of control of an
+          enemy unit, your unit's movement is stopped and it must either attack or end its turn, unless it is a recon unit.
+          If your unit was ordered to move to a point which takes it through a hex occupied by a previously hidden
+          enemy unit, your unit is surprised by the enemy unit, and your unit's turn ends after combat is resolved.
+      </div>
+      <div class="subtitle">Victory Conditions</div>
+      <div class="text">
+          Battles are won by taking or holding some or all of the Victory Objective hexes, which are represented
+          by hexes with gold-bordered flags on the Battlefield and Strategic Map. Capturing towns, supply
+          points, ports, and airfields that are not Victory Objectives gains you prestige points, but does not affect
+          the victory conditions, so you should always focus on capturing the objectives you have been ordered
+          to take.
+          Destroying all enemy units will also trigger a victory.
+          Depending on how fast you capture all objectives victories can be brilliant, normal or tactical and each give
+          a certain amount of prestige points. Brillian victories give the most prestige points and you are also rewarded
+          with a prototype unit for your core army in the next scenario.
+          If you don't meet your objectives in the maximum number of turns the battle is lost and depending on campaign
+          path flow it can also result in ending the campaign.
+
+          Some scenarios can only be "won" by playing the game until last turn, usually this is noted in the
+          briefing at the start of the scenario.
+      </div>
+
+      <div class="title"> Weather</div>
+      <table class="tblStyle1">
+          <tr><td colspan="2">Name</td><td>Effect</td></tr>
+          <tr><td colspan="3">Ground</td></tr>
+          <tr><td><span class="iconsMain blue">6</span></td><td>Dry</td><td></td></tr>
+          <tr><td><span class="iconsMain blue">7</span></td><td>Mud</td><td>Reduced movement</td></tr>
+          <tr><td><span class="iconsMain blue">8</span></td><td>Frozen</td><td>Can pass rivers in same turn, Reduced movement</td></tr>
+          <tr><td colspan="3">Atmospheric</td></tr>
+          <tr><td><span class="iconsMain blue">4</span></td><td>Fair</td><td></td></tr>
+          <tr><td><span class="iconsMain blue">5</span></td><td>Overcast</td><td>Air units can't attack. Might turn to Raining or Snowing</td></tr>
+          <tr><td><span class="iconsMain blue">1</span></td><td>Raining</td><td>Air units can't attack. Will turn Ground to Mud.</td></tr>
+          <tr><td><span class="iconsMain blue">2</span></td><td>Snowing</td><td>Air units can't attack. Will turn Ground to Frozen</td></tr>
+
+      </table>
+      <div class="title"> Unit Actions</div>
+      <div class="header_container">
+          <div class="icon_round">[</div><div class="header">Mount/Dismount</div>
+          <div class="break"></div>
+          <div class="text"> Mounts the unit into its attached ground transport (if any). This, depending on terrain, will increase
+              the movement range of the unit. Units are much more vulnerable when transported except infantry units which
+              will jump out of the transport when attacked.
+          </div>
+      </div>
+
+      <div class="header_container">
+          <div class="icon_round">2</div><div class="header">Embark/Disembark</div>
+          <div class="break"></div>
+          <div class="text"> Mounts the unit into an Air or Sea/Ocean transport. This option will only be available if unit is standing on
+              a port or airfield and the tooltip with Available Transports shows a number bigger than 0. The unit must not have moved in the
+              current turn to be able to Embark. Only certain classes of units can embark in a plane: infantry, light anti-tank, and light artillery.
+          </div>
+      </div>
+
+      <div class="header_container">
+          <div class="icon_round">!</div><div class="header">Resupply</div>
+          <div class="break"></div>
+          <div class="text">
+              Resupplies unit with ammo and fuel if unit didn't move in the current turn. The amount resuplied depends on how many enemy units are adjacent, terrain type and weather.
+              Maximum supplies are provided if unit is in a city without enemy units around. Resupplying units costs prestige.
+          </div>
+      </div>
+
+      <div class="header_container">
+          <div class="icon_round">#</div><div class="header">Reinforce</div>
+          <div class="break"></div>
+          <div class="text"> Reinforces the unit strength and also resupplies the unit if it didn't move in the current turn. Same rules as Resupply apply, reinforcing
+              a unit is more costly, in terms of prestige than resupply.
+          </div>
+      </div>
+
+      <div class="header_container">
+          <div class="icon_round">J</div><div class="header">Overstrength</div>
+          <div class="break"></div>
+          <div class="text">
+              Reinforce the unit over the 10 maximum strength if it didn't move in the current turn. This is only possible when unit has more then 100 experience. Every
+              100 experience unit can be overstrength with 1 more. Maximum is capped at +10 for a total of 20 strength
+          </div>
+      </div>
+
+      <div class="header_container">
+          <div class="icon_round">_</div><div class="header">Undo Move</div>
+          <div class="break"></div>
+          <div class="text">
+              Undo the last move, only possible when unit didn't discover hidden units or didn't attack another unit.
+          </div>
+      </div>
+
+      <div class="title">Unit Classes</div>
+      <div class="header_container">
+          <div class="icon_round">(</div><div class="header">Infantry</div>
+          <div class="break"></div>
+          <div class="text">
+              Special abilities:<br>
+              <ul>
+                  <li>Can jump out of transport when attacked without any combat penality.</li>
+                  <li>Good in cities, forest, or mountainous terrain.</li>
+                  <li>Can enter in close-combat against targets in City, Forest, Mountain or against Fortification increasing attack value</li>
+                  <li>Many specialized units:
+                      <ul>
+                          <li>Engineers for destroying fortifications and deeply entrenched city defenders</li>
+                          <li>Bridging for passing and removing penalty of rivers</li>
+                          <li>Paratroopers for disembarking anywhere on the map from an air transport</li>
+                          <li>Mortar Artillery, Anti Tank and Air Defence special units</li>
+                      </ul>
+                  </li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="header_container">
+          <div class="icon_round">]</div><div class="header">Tank</div>
+          <div class="break"></div>
+          <div class="text"> Special abilities:<br>
+              <ul>
+                  <li>It can quickly <b>overrun</b> an weak enemy unit allowing it to destroy it without being fired against and allowed to move and attack again.</li>
+                  <li>Good in open terrain</li>
+                  <li>Can destroy several weakened units with the above mentioned overrun ability</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="header_container">
+        <div class="icon_round">/</div><div class="header">Anti-Tank</div>
+          <div class="break"></div>
+          <div class="text">Special abilities:<br>
+              <ul>
+                  <li>Ambush a surprise attack on an tank unit that passed near it without being spotted</li>
+                  <li>Good against armor, especially when it's self propelled</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="header_container">
+        <div class="icon_round">=</div><div class="header">Recon</div>
+          <div class="break"></div>
+          <div class="text"> Special abilities:<br>
+              <ul>
+                  <li>Multiple Phased movement. Can move, stop and move again, great for spotting enemy units</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="header_container">
+        <div class="icon_round">)</div><div class="header">Artillery</div>
+          <div class="break"></div>
+          <div class="text">Special abilities:<br>
+              <ul>
+                  <li>Support fire. Will counter attack any enemy unit in range that attacks an allied unit</li>
+                  <li>Ranged fire without being attacked back</li>
+                  <li>Good at destroying entrenchments</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="header_container">
+        <div class="icon_round">*</div><div class="header">Air Defence</div>
+          <div class="break"></div>
+          <div class="text"> Special abilities:<br>
+              <ul>
+                  <li>Support fire. Will counter attack any air enemy unit in range that attacks an allied unit</li>
+                  <li>Ranged fire without being attacked back</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="header_container">
+        <div class="icon_round">%</div><div class="header">Air Fighter</div>
+          <div class="break"></div>
+          <div class="text"> Special abilities:<br>
+              <ul>
+                  <li>Repel air attacks. Fighters will automatically attack any enemy plane adjacent to it when it attacks an allied unit.</li>
+                  <li>Great mobilty and recon duties</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="header_container">
+        <div class="icon_round">4</div><div class="header">Air Bomber</div>
+          <div class="break"></div>
+          <div class="text"> Special abilities:<br>
+              <ul>
+                  <li>Great for softening units fortified in cities or distrupting enemy supply lines transports</li>
+              </ul>
+          </div>
+      </div>
+
+  </div>
+
+  <div>
+      <div class="title">Unit Stats</div>
+      <div class="header_container">
+          <div class="icon_round">B</div>
+          <div class="header">Price</div>
+          <div class="break"></div>
+          <div class="text"> The cost of a unit in terms of prestige. Prestige points represent the influence you have
+              earned
+              with the high command by winning battles as quickly and decisively as possible, and taking and holding
+              victory
+              objectives and cities. You can exchange prestige points for new units, replacements, and new equipment for
+              existing units.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">:</div>
+          <div class="header">Strength</div>
+          <div class="text"> A unit starts with ten strength points. A unit current strength is given on the strength
+              tag,
+              below the unit icon on the Battlefield. Casualties taken in battle are represented by a loss of strength
+              points, and a unit reduced to zero strength points is destroyed. Each strength point
+              makes an individual attack on the enemy using the unit attack and defense values. The number of
+              strength points used for attack is also halved by rain or snow for ground troops and by overcast
+              weather for air units (air units may not attack in rain or snow).
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">;</div>
+          <div class="header">Fuel</div>
+          <div class="break"></div>
+          <div class="text"> If unit uses fuel for movement it shows how many moves it can do before getting stuck
+              without fuel
+              and in need of resupply. With a clear terrain or road every movement consumes 1 point of fuel. Other
+              terrain and weather types
+              will increase fuel consumption.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">&#60;</div>
+          <div class="header">Ammo</div>
+          <div class="break"></div>
+          <div class="text"> How many attacks a unit can perform. Each attack uses 1 ammo. A unit without ammo will get
+              increased casualties
+              when attacked. Artillery without ammo cannot perform supporting fire.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">&#62;</div>
+          <div class="header">Firing Range</div>
+          <div class="break"></div>
+          <div class="text"> The distance in hexes that the unit can attack an enemy unit. Usually artillery units have
+              a range bigger than
+              1 but powerfull tank, anti-tank, air defence and even infantry can have a range of 2.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">?</div>
+          <div class="header">Movement Range</div>
+          <div class="break"></div>
+          <div class="text"> The range in hexes that a unit can move in 1 turn. Each unit has a movement point allowance
+              per turn that is spent as it moves.
+              The movement point cost of each hex depends on the terrain in the hex, weather conditions, and the unit
+              movement type.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">@</div>
+          <div class="header">Experience</div>
+          <div class="break"></div>
+          <div class="text"> Each time a unit takes part in combat it gains experience, and the more successful it is in
+              combat, the
+              more experience points it gains. The maximum experience level a unit can achieve is 10.
+              When two units fight, their relative experience levels affect combat, and help determine relative
+              casualties. Experience also determines overstrength size, reduces the risk of rugged defense, and
+              modifies initiative. Units with two or three experience levels should be considered veteran troops and
+              those with four or five levels elite troops. Veteran units sustain fewer casualties and inflict more
+              casualties than a less experienced unit. Units
+              gain experience by fighting and gain the most by destroying, or forcing into retreat, more experienced
+              enemy units and units with better equipment. Making veteran and elite units overstrength is valuable
+              because they are better able to withstand and
+              inflict casualties in combat.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">"</div>
+          <div class="header">Entrenchment</div>
+          <div class="break"></div>
+          <div class="text"> Units that have not moved are assumed to dig in each turn even if they attack, resupply,
+              and so on.
+              Each turn the unit does not move, it entrenches further. If a unit moves out of the hex, it loses all its
+              entrenchment levels,
+              All terrain types have a base entrenchment level from zero to three, which ground units in that hex with
+              lower entrenchment levels automatically obtain at the end of their turn. This number is not added to
+              the unit entrenchment level; it replaces it. Base entrenchment levels are: three for cities, two for
+              forests, bocage (intertwined hedgerows), and mountains, one for rough terrain and hills, and zero for
+              everything else. Units can entrench up to a maximum of five levels above the base entrenchment level
+              for the terrain.
+              Entrenchment levels are reduced by attacks or bombardment of entrenched ground units. Each attack,
+              whether it is successful or not, reduces the unit entrenchment level by one level. Repeated attacks in
+              a single turn can even reduce the entrenchment level below the base level for the terrain, thus
+              facilitating further attacks during the same turn. A proven way to attack a strongly entrenched unit is
+              with a combination of aerial and artillery preparatory bombardment, followed by ground attacks by one
+              or more units. Engineer units, with the exception of bridge engineers, ignore entrenchment, making
+              them valuable units during this type of assault.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">|</div>
+          <div class="header">Combat initiative</div>
+          <div class="break"></div>
+          <div class="text"> Initiative is an estimate of a unit ability to react quickly in combat. Initiative is
+              determined by the equipment used in battle, the terrain upon which the battle takes place, and the
+              experience of the units. It is also adjusted by a random factor, to help simulate the uncertainty of
+              battle. The higher the unit initiative, the better, since the unit with the higher initiative takes
+              reduced damage. If a tactical surprise or rugged defense occurs, the attacker initiative is zero.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">'</div>
+          <div class="header">Spotting range</div>
+          <div class="break"></div>
+          <div class="text"> The distance, in hexes, at which a unit becomes aware of the general location of enemy
+              units. Note that there are no terrain restrictions on spotting range; for example, a mountain
+              hex does not block spotting beyond it, however, spotting range may be reduced by bad weather.
+              Once a hex is spotted during a player turn, it remains sighted for the entire turn. Any time a friendly
+              unit moves and does not cancel its move, it surveys all hexes within its spotting range. Enemy units
+              within your unit spotting range are automatically revealed.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">{</div>
+          <div class="header">Power vs Hard targets</div>
+          <div class="break"></div>
+          <div class="text"> A value gauging the unit attack capabilities against hard targets, such as tanks, certain
+              recons and fortifications. A value of zero indicates that the unit cannot attack hard targets.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">$</div>
+          <div class="header">Power vs Soft targets</div>
+          <div class="break"></div>
+          <div class="text"> A value gauging the unit attack capabilities against soft targets, such as infantry,
+              artillery, air defence.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">&</div>
+          <div class="header">Power vs Air targets</div>
+          <div class="break"></div>
+          <div class="text"> A value gauging the unit attack capabilities against air targets, such as tactical
+              bombers and fighters. A value of zero indicates that the unit cannot attack air targets.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">}</div>
+          <div class="header">Power vs Naval targets</div>
+          <div class="break"></div>
+          <div class="text"> A value gauging the unit attack capabilities against naval targets, such as destroyers
+              and battleships. A value of zero indicates that the unit cannot attack naval targets.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">5</div>
+          <div class="header">Defence vs ground attacker</div>
+          <div class="break"></div>
+          <div class="text">A value gauging the unit ability to withstand attacks by land and naval units.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">3</div>
+          <div class="header">Defence vs air attacker</div>
+          <div class="break"></div>
+          <div class="text"> A value gauging the unit ability to withstand attacks by air units. Air units use this
+              defense value against all attacks
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">6</div>
+          <div class="header">Defence in close combat</div>
+          <div class="break"></div>
+          <div class="text"> A value gauging a non-infantry ground unit ability to attack infantry in city or forest
+              hexes, or defend itself in city or forest hexes against infantry. When any non-infantry ground unit
+              attacks infantry which puts up a rugged defense, the attacking unit uses its close defense
+              value. When combating or defending against infantry in city or forest hexes, non-infantry
+              ground units suffer the handicap of using their close defense values. Infantry do not retain this
+              advantage in clear terrain. Since close defense values are usually less than ground defense values,
+              this makes infantry more dangerous in difficult terrain.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">7</div>
+          <div class="header">Defence in ranged combat</div>
+          <div class="break"></div>
+          <div class="text"> A value gauging the unit ability to withstand ranged attacks by ground units. This value
+              is <b>not used to defend against artillery fire</b> but for other type of units that fire at range (certain
+              tanks, anti-tanks and so on).
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">~</div>
+          <div class="header">Movement type</div>
+          <div class="break"></div>
+          <div class="text"> The different methods of movement units may use are: leg, towed, wheeled, half-tracked
+              , tracked, all-terrain, naval, and air. Units with leg or towed movement have no
+              fuel rating, and can acquire non-organic transport for greater mobility. Terrain and weather affects the
+              cost of movement depending on movement type. For example tracked, half-tracked and wheeled won't be able to
+              enter mountainous or swamp terrain. In rough type terrain tracked and half-tracked can pass through but
+              wheeled vehicles can't.
+          </div>
+      </div>
+      <div class="header_container">
+          <div class="icon_round">`</div>
+          <div class="header">Target type</div>
+          <div class="break"></div>
+          <div class="text"> The target classification of the unit, either soft, hard, air or naval, which determines
+              which attack values an opponent uses against the unit.
+          </div>
+      </div>
+
+
+      <div class="title"> Terrain</div>
+      <div class="text">
+          Careful analysis of terrain is vital to a well conceived and executed battle strategy. Terrain affects
+          movement, since some types of ground are more difficult to negotiate than others. Also, some types of terrain
+          provide greater base entrenchment, making those areas more defensible, and more difficult to clear of enemy
+          defenders.
+          <br>
+          In difficult terrain, such as cities and mountains, defending and attacking infantry shoot against the
+          close defense number of the enemy unit, usually placing the non-infantry unit at a severe
+          disadvantage. The exception to this being that infantry may attack another unit that succeeds in
+          putting up a rugged defense, in which case the attacker shoots at the defenders ground defense
+          value. Infantry and artillery can be highly effective when defending from difficult terrain, particularly
+          against larger vehicles, such as tanks, which have difficulty bringing their full power to bear.
+          Conversely, tank and self-propelled anti-tank units, which have difficulty in cities and forests, can be
+          dominant in clear terrain, where defending infantry and artillery need to be entrenched to survive an
+          armoured attack.
+          <br>
+          Rivers are a terrain type that deserves special mention. Entering a river hex ends a ground unit's
+          movement, except when the river is frozen. It may exit the river hex normally the following turn.
+          Dismounted bridging engineers may serve as bridges, eliminating this penalty for the hexes engineers
+          occupy. The bridging engineers can also bridge rivers where there is no ford. When a bridging
+          engineer unit moves into a river hex, a pontoon bridge appears. Friendly units may then move over the
+          bridge icon. Note: Some rivers are too wide to cross with bridging engineers.
+      </div>
+
+
+
+
+      <table class="tblStyle1" >
+          <tr id="rowTerrainLegend"></tr>
+          <tr id="rowTerrainNames"></tr>
+          <tr><td colspan="50">Entrenchment Rates</td></tr>
+          <tr id="rowTerrainEntrench"></tr>
+          <tr><td colspan="50">Unit Initiative Cap</td></tr>
+          <tr id="rowTerrainInit"></tr>
+          <tbody id="tblTerrain"></tbody>
+      </table>
+
+
+      <script>
+          function terrainLegend() {
+              var terrainEncoding = ["A", "B", "C", "D", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "Q", "A"];
+              var terrainNames = ["Clear", "City", "Airfield", "Forest", "Bocage", "Hill", "Mountain", "Sand", "Swamp", "Ocean", "River", "Fortification", "Port", "Stream", "Escarpment", "Impassable river", "Rough", "Road"];
+              var terrainEntrenchment = [ 0, 3, 0, 2, 2, 1, 2, 0, 0, 0, 0, 4, 1, 0, 0, 0, 2 ];
+              var terrainInitiative = [ 99, 1, 99, 3, 3, 5, 1, 99,2, 99, 99, 3, 5, 99, 99, 99, 3, 1];
+
+              var movMethodNames =
+                  [
+                      "Tracked", "Half Tracked", "Wheeled", "Leg", "Towed", "Air", "Deep Naval",
+                      "Costal", "All Terrain", "Amphibious", "Naval", "Mountain Leg"
+                  ];
+              //Tables for movement cost for different ground conditions 254 Stop move (but select the tile), 255 Don't enter
+              var movTableDry =
+                  [
+                      //Clear, City, Airfield, Forest, Bocage, Hill, Mountain, Sand, Swamp, Ocean, River, Fortification, Port, Stream, Escarpment, impassableRiver, Rough, Roads
+                      [1, 1, 1, 2, 4, 2, 254, 1, 4, 255, 254, 1, 1, 2, 255, 255, 2, 1], //Tracked
+                      [1, 1, 1, 2, 254, 2, 254, 1, 4, 255, 254, 1, 1, 2, 255, 255, 2, 1], //Half Tracked
+                      [2, 1, 1, 4, 254, 3, 254, 3, 254, 255, 254, 2, 1, 4, 255, 255, 2, 1], //Wheeled
+                      [1, 1, 1, 2, 2, 2, 254, 2, 2, 255, 254, 1, 1, 1, 255, 255, 2, 1], //Leg
+                      [1, 1, 1, 1, 1, 1, 254, 1, 255, 255, 254, 1, 1, 254, 255, 255, 1, 1], //Towed
+                      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //Air
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 1, 255, 255, 1, 255, 255, 255, 255, 255], //Deep Naval
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 2, 1, 255, 1, 255, 255, 255, 255, 255], //Costal
+                      [1, 1, 1, 2, 3, 3, 254, 2, 254, 255, 254, 1, 1, 1, 255, 255, 3, 1], //All Terrain Tracked
+                      [1, 1, 1, 2, 4, 2, 254, 1, 3, 254, 3, 1, 1, 2, 255, 255, 2, 1], //Amphibious
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 1, 255, 255, 1, 255, 255, 255, 255, 255], //Naval
+                      [1, 1, 1, 1, 2, 1, 1, 2, 2, 255, 254, 1, 1, 1, 255, 255, 1, 1], //All Terrain Leg (Mountain)
+              ];
+
+              var movTableFrozen =
+                  [
+                      //Clear, City, Airfield, Forest, Bocage, Hill, Mountain, Sand, Swamp, Ocean, River, Fortification, Port, Stream, Escarpment, impassableRiver, Rough, Roads
+                      [1, 1, 1, 2, 4, 2, 254, 1, 2, 255, 2, 1, 1, 2, 255, 255, 2, 1], //Tracked
+                      [1, 1, 1, 2, 254, 3, 254, 1, 2, 255, 2, 1, 1, 2, 255, 255, 3, 1], //Half Tracked
+                      [2, 2, 2, 254, 254, 254, 254, 3, 3, 255, 3, 3, 2, 4, 255, 255, 4, 2], //Wheeled
+                      [1, 1, 1, 2, 2, 2, 254, 2, 1, 255, 2, 1, 1, 1, 255, 255, 2, 1], //Leg
+                      [1, 1, 1, 1, 1, 1, 254, 1, 1, 255, 254, 1, 1, 254, 255, 255, 1, 1], //Towed
+                      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //Air
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 1, 255, 255, 1, 255, 255, 255, 255, 255], //Deep Naval
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 2, 255, 255, 1, 255, 255, 255, 255, 255], //Costal
+                      [1, 1, 1, 2, 3, 3, 254, 2, 3, 255, 2, 1, 1, 1, 255, 255, 3, 1], //All Terrain Tracked
+                      [1, 1, 1, 2, 4, 3, 254, 1, 3, 254, 2, 2, 1, 2, 255, 255, 3, 1], //Amphibious
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 1, 255, 255, 1, 255, 255, 255, 255, 255], //Naval
+                      [1, 1, 1, 1, 2, 1, 2, 2, 1, 255, 2, 1, 1, 1, 255, 255, 2, 1], //All Terrain Leg (Mountain)
+              ];
+
+
+              var movTableMud =
+                  [
+                      //Clear, City, Airfield, Forest, Bocage, Hill, Mountain, Sand, Swamp, Ocean, River, Fortification, Port, Stream, Escarpment, impassableRiver, Rough, Roads
+                      [2, 1, 1, 2, 4, 3, 254, 1, 254, 255, 254, 2, 1, 2, 255, 255, 3, 2], //Tracked
+                      [3, 1, 1, 2, 254, 3, 254, 1, 254, 255, 254, 2, 1, 2, 255, 255, 3, 2], //Half Tracked
+                      [4, 2, 2, 254, 254, 254, 254, 3, 254, 255, 254, 4, 2, 4, 255, 255, 254, 2], //Wheeled
+                      [2, 1, 1, 2, 2, 2, 254, 2, 1, 255, 254, 2, 1, 1, 255, 255, 3, 1], //Leg
+                      [2, 1, 1, 1, 1, 2, 254, 1, 255, 255, 254, 21, 1, 254, 255, 255, 2, 2], //Towed
+                      [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], //Air
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 1, 255, 255, 1, 255, 255, 255, 255, 255], //Deep Naval
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 2, 255, 255, 1, 255, 255, 255, 255, 255], //Costal
+                      [2, 1, 1, 2, 3, 3, 254, 2, 3, 255, 255, 2, 1, 1, 255, 255, 4, 2], //All Terrain Tracked
+                      [1, 1, 1, 2, 4, 3, 254, 1, 3, 254, 3, 2, 1, 2, 255, 255, 3, 1], //Amphibious
+                      [255, 255, 255, 255, 255, 255, 255, 255, 255, 1, 255, 255, 1, 255, 255, 255, 255, 255], //Naval
+                      [2, 1, 1, 1, 3, 1, 3, 2, 1, 255, 254, 2, 1, 1, 255, 255, 3, 1], //All Terrain Leg (Mountain)
+              ];
+
+              var eTable = $('tblTerrain');
+              var eLegend = $('rowTerrainLegend');
+              var eName = $('rowTerrainNames');
+              var eEntrench = $('rowTerrainEntrench');
+              var eInit = $('rowTerrainInit');
+
+              for (var i = 0; i < terrainNames.length; i++) {
+                  var tdIcon = addTag(eLegend, 'td');
+                  var divIcon = addTag(tdIcon, 'div');
+                  var tdName = addTag(eName, 'td');
+                  var tdEntrench = addTag(eEntrench, 'td');
+                  var tdInit = addTag(eInit, 'td');
+
+                  divIcon.className = 'icon_misc_round';
+                  divIcon.textContent = terrainEncoding[i];
+
+                  tdName.className = tdEntrench.className = tdInit.className = 'textCenter';
+                  tdName.textContent = terrainNames[i];
+                  tdEntrench.textContent = terrainEntrenchment[i];
+
+                  if (terrainInitiative[i] == 99) {
+                      tdInit.textContent = 'None';
+                  } else {
+                      tdInit.textContent = terrainInitiative[i];
+                  }
+              }
+
+              for (var i = 0; i < movMethodNames.length; i++) {
+                  var trMov = addTag(eTable, 'tr');
+                  var tdMovDesc = addTag(trMov, 'td');
+                  tdMovDesc.innerHTML = '<span>' + movMethodNames[i] + ' Cost: </span><span class="iconsMain blue">6 7 8</span>';
+                  tdMovDesc.colSpan = 50;
+                  trMov = addTag(eTable, 'tr');
+                  for (var j = 0; j < terrainNames.length; j++) {
+                      var tdCost = addTag(trMov, 'td');
+                      var dryCost = movTableDry[i][j];
+                      var mudCost = movTableMud[i][j];
+                      var iceCost =  movTableFrozen[i][j];
+
+                      if (dryCost == 254) dryCost = "\u25CF";
+                      if (mudCost == 254) mudCost = "\u25CF";
+                      if (iceCost == 254) iceCost = "\u25CF";
+
+                      if (dryCost == 255) dryCost = "\u25A0";
+                      if (mudCost == 255) mudCost = "\u25A0";
+                      if (iceCost == 255) iceCost = "\u25A0";
+
+                      tdCost.textContent =  dryCost + " " + mudCost + " " + iceCost;
+                  }
+
+              }
+
+          }
+          terrainLegend();
+      </script>
+
+      <div class="title"> Unit Leaders</div>
+      <div class="text">
+          In battle, when a unit reaches a new level of experience (every 100 experience), a star or cross may appear
+          next to that unit's strength tag, indicating that unit has a leader.
+          Leaders are unique, and each possesses two abilities; one is class related, the other is
+          random. Units with over 1000 experience automatically get a leader.
+      </div>
+
+      <table class="tblStyle1">
+          <caption>Automatic abilities according to unit class
+          </caption>
+          <tbody>
+      <tr>
+          <th>Air Defense
+          </th>
+          <td>Mechanized Veteran</td>
+          <td>A self-propelled Air Defense unit may move and fire in the same turn.
+          </td></tr>
+      <tr>
+          <th>Anti-Tank
+          </th>
+          <td>Tank Killer</td>
+          <td>An Anti-Tank unit will not receive a penalty for movement into combat .
+          </td></tr>
+      <tr>
+          <th>Artillery
+          </th>
+          <td>Marksman</td>
+          <td>The artillery unit's attack range is increased by one hex.
+          </td></tr>
+      <tr>
+          <th>Fighter
+          </th>
+          <td>Skilled Interceptor</td>
+          <td>The unit can intercept multiple enemy fighters in the defensive phase.
+          </td></tr>
+      <tr>
+          <th>Infantry
+          </th>
+          <td>Tenacious Defense</td>
+          <td>The infantry unit's ground defense factor is increased by 4.
+          </td></tr>
+      <tr>
+          <th>Reconnaissance
+          </th>
+          <td>Elite Recon Veteran</td>
+          <td>The recon unit's spotting range is increased by two hexes.
+          </td></tr>
+      <tr>
+          <th>Tactical Bomber
+          </th>
+          <td>Skilled Assault</td>
+          <td>The bomber cannot be surprised ("out of the sun") while moving.
+          </td></tr>
+      <tr>
+          <th>Tank
+          </th>
+          <td>Aggressive Maneuver</td>
+          <td>The tank's movement factor is increased by 1.
+          </td></tr></tbody><tfoot></tfoot></table>
+
+
+      <table class="tblStyle1">
+          <caption>Random abilities
+          </caption>
+      <tbody>
+      <tr>
+          <th>Aggressive Attack
+          </th>
+          <td>Each of the unit's attack values is increased by 2.
+          </td></tr>
+      <tr>
+          <th>Aggressive Maneuver
+          </th>
+          <td>The unit's movement factor is increased by 1.
+          </td></tr>
+      <tr>
+          <th>All Weather Combat
+          </th>
+          <td>The air unit is not affected by weather conditions. <i>Note: This can only be awarded air units.</i>
+          </td></tr>
+      <tr>
+          <th>Alpine Training
+          </th>
+          <td>When moving the unit treats forest and mountain hexes as clear terrain.
+              <p><i>Note: Some units like e.g. german "Jaeger" infantry have this inherrent.</i>
+              </p>
+          </td></tr>
+      <tr>
+          <th>Battlefield Intelligence
+          </th>
+          <td>The unit cannot be surprised.
+          </td></tr>
+      <tr>
+          <th>Bridging
+          </th>
+          <td>When moving the unit treats passable river hexes as rough terrain.
+          </td></tr>
+      <tr>
+          <th>Combat Support
+          </th>
+          <td>The unit provides an experience bonus to adjacent units
+          </td></tr>
+      <tr>
+          <th>Determined Defense
+          </th>
+          <td>Each of the unit's defense factors is increased by 2.
+          </td></tr>
+      <tr>
+          <th>Devastating Fire
+          </th>
+          <td>The unit may fire twice in a turn. <i>Note: First shot is consuming the bonus (for this turn) but does not count as an attack otherwise - i.e. if the unit did not move, it can resupply after firing once!</i>
+          </td></tr>
+      <tr>
+          <th>Ferocious Defense
+          </th>
+          <td>The unit's entrenchment cannot be ignored by enemy units.
+          </td></tr>
+      <tr>
+          <th>Fire Discipline
+          </th>
+          <td>The unit will expend only one-half of an ammunition point each time it attacks.
+          </td></tr>
+      <tr>
+          <th>First Strike
+          </th>
+          <td>The unit will fire first against an enemy unit if it wins the initiative in a combat round.
+          </td></tr>
+      <tr>
+          <th>Forest Camouflage
+          </th>
+          <td>If in a forest hex the unit cannot be spotted by enemy units unless they move adjacent to it.
+          </td></tr>
+      <tr>
+          <th>Infiltration Tactics
+          </th>
+          <td>The unit ignores enemy unit entrenchment when calculating combat results.
+          </td></tr>
+      <tr>
+          <th>Influence
+          </th>
+          <td>Allows the unit to upgrade to better equipment at reduced prestige point cost.
+          </td></tr>
+      <tr>
+          <th>Liberator
+          </th>
+          <td>You receive double the normal number of prestige points for all objective and victory hexes captured by the unit.
+          </td></tr>
+      <tr>
+          <th>Overwatch
+          </th>
+          <td>The unit will fire at any enemy unit that moves within its range. The enemy unit is automatically surprised, allowing your unit to fire first and at the enemy's close assault, rather than its ground defense, factor.
+          </td></tr>
+      <tr>
+          <th>Overwhelming Attack
+          </th>
+          <td>When attacking the unit will have an indeterminate number of the suppression points it would otherwise inflict converted to kills.
+          </td></tr>
+      <tr>
+          <th>Reconnaissance Movement
+          </th>
+          <td>The unit is permitted phased movement, just like reconnaissance units.
+          </td></tr>
+      <tr>
+          <th>Resilience
+          </th>
+          <td>The unit will suffer 1 to 3 fewer step casualties than normal units when attacked.
+          </td></tr>
+      <tr>
+          <th>Shock Tactics
+          </th>
+          <td>Any suppression which the unit inflicts on an enemy unit will last the entire player's turn, not just the specific combat round.
+          </td></tr>
+      <tr>
+          <th>Skilled Ground Attack
+          </th>
+          <td>The unit will inflict 1 to 3 more step casualties than normal units when attacking.
+          </td></tr>
+      <tr>
+          <th>Skilled Reconnaissance
+          </th>
+          <td>The unit's spotting range is increased by one hex.
+          </td></tr>
+      <tr>
+          <th>Street Fighter
+          </th>
+          <td>The unit ignores an enemy unit's city entrenchment when calculating combat results.
+          </td></tr>
+      <tr>
+          <th>Superior Maneuver
+          </th>
+          <td>The unit may bypass enemy units' zones of control.
+          </td></tr></tbody><tfoot></tfoot></table>
+
+
+      <div class="title"> Keyboard Shortcuts</div>
+      <ul>
+          <li>E - Embark/Disembark</li>
+          <li>M - Mount/Dismount</li>
+          <li>S - Supply</li>
+          <li>R - Replacements</li>
+          <li>O - Over-strength</li>
+          <li>U - Undo last move if possible</li>
+          <li>N - Select Next Unit</li>
+          <li>P - Select Previous Unit</li>
+          <li>A - Toggle Air/Ground Mode</li>
+          <li>H - Toggle Hex marks on/off (also adds back Labels)</li>
+          <li>L - Hides Labels over the cities/objectives/units</li>
+          <li>B - Toggle Buy/Upgrade menu</li>
+          <li>I - Toggle Inspect unit</li>
+          <li>Z - Toggle Strategic Map</li>
+          <li>Esc - Deselect Unit. With no unit selected toggles Main Menu</li>
+      </ul>
+
+  </div>
+  </body>
+</html>
