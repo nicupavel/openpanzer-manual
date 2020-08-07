@@ -80,7 +80,9 @@
             font-weight: normal;
             font-family: Roboto, sans-serif;
             font-size: 13px;
+            margin-bottom: 10px;
         }
+        .text:before { content: "\00a0 \00a0 \00a0 \00a0"; }
 
         .header_container {
             display: flex;
@@ -92,28 +94,22 @@
 
         .break {
             flex-basis: 100%;
-            height: 0;
+            height: 7px;
         }
 
 
         .header {
             font-family: 'Roboto', sans-serif;
-            font-weight: bold;
-            border: solid 3px #f90;
-            border-radius: 8px;
-            box-shadow: 1px 2px 3px rgba(0, 0, 0, .75), inset 0 0 0 5px rgba(0, 0, 0, .16);
-            background-color: #000;
-            background-repeat: no-repeat;
-            color: #f8e064;
-            height: 40px;
+            color: #f90;
             flex-grow: 1;
-            position: relative;
-            left: -20px;
-            z-index: 19;
-            line-height: 38px;
-            padding-left: 40px;
+            padding-left: 10px;
         }
-
+        .icon_small {
+            font-family: openpanzer-menu;
+            font-weight: normal;
+            font-size: 26px;
+            text-align: center;
+        }
         .icon_round,
         .icon_misc_round {
             width: 60px;
@@ -227,7 +223,7 @@
         .page {
             box-sizing: border-box;
             border: 1px solid black;
-            min-width: 600px;
+            min-width:600px;
             max-width: 600px;
             height: 800px;
             padding: 3px;
@@ -252,7 +248,6 @@
 </head>
 
 <body>
-    <div style="width:320px">
     <div class="container">
         <div class="page">
             <div class="title"> Unit</div>
@@ -389,7 +384,7 @@
                 In each turn you, your allies, and your opponents are given a chance to move units, attack enemy units,
                 resupply units, and
                 so on. When you finished all your orders you can press the End Turn button <span
-                    class="icon_round">t</span> from the right side of the screen.
+                    class="icon_small">t</span> from the right side of the screen.
             </div>
             <div class="subtitle">Combat</div>
             <div class="text">
@@ -459,19 +454,17 @@
         <div class="page">
             <div class="title"> Unit Actions</div>
             <div class="header_container">
-                <div class="icon_round">[</div>
+                <div class="icon_small">[</div>
                 <div class="header">Mount/Dismount</div>
                 <div class="break"></div>
                 <div class="text"> Mounts the unit into its attached ground transport (if any). This, depending on
-                    terrain, will increase
-                    the movement range of the unit. Units are much more vulnerable when transported except infantry
-                    units which
-                    will jump out of the transport when attacked.
+                    terrain, will increase the movement range of the unit. Units are much more vulnerable when transported except infantry
+                    units which will jump out of the transport when attacked.
                 </div>
             </div>
 
             <div class="header_container">
-                <div class="icon_round">2</div>
+                <div class="icon_small">2</div>
                 <div class="header">Embark/Disembark</div>
                 <div class="break"></div>
                 <div class="text"> Mounts the unit into an Air or Sea/Ocean transport. This option will only be
@@ -484,7 +477,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">!</div>
+                <div class="icon_small">!</div>
                 <div class="header">Resupply</div>
                 <div class="break"></div>
                 <div class="text">
@@ -496,7 +489,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">#</div>
+                <div class="icon_small">#</div>
                 <div class="header">Reinforce</div>
                 <div class="break"></div>
                 <div class="text"> Reinforces the unit strength and also resupplies the unit if it didn't move in the
@@ -506,7 +499,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">J</div>
+                <div class="icon_small">J</div>
                 <div class="header">Overstrength</div>
                 <div class="break"></div>
                 <div class="text">
@@ -518,7 +511,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">_</div>
+                <div class="icon_small">_</div>
                 <div class="header">Undo Move</div>
                 <div class="break"></div>
                 <div class="text">
@@ -530,7 +523,7 @@
         <div class="page">
             <div class="title">Unit Classes</div>
             <div class="header_container">
-                <div class="icon_round">(</div>
+                <div class="icon_small">(</div>
                 <div class="header">Infantry</div>
                 <div class="break"></div>
                 <div class="text">
@@ -553,7 +546,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">]</div>
+                <div class="icon_small">]</div>
                 <div class="header">Tank</div>
                 <div class="break"></div>
                 <div class="text"> Special abilities:<br>
@@ -567,7 +560,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">/</div>
+                <div class="icon_small">/</div>
                 <div class="header">Anti-Tank</div>
                 <div class="break"></div>
                 <div class="text">Special abilities:<br>
@@ -579,7 +572,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">=</div>
+                <div class="icon_small">=</div>
                 <div class="header">Recon</div>
                 <div class="break"></div>
                 <div class="text"> Special abilities:<br>
@@ -591,9 +584,9 @@
         </div>
 
         <div class="page">
-            <div class="title">Unit Classes 2</div>
+            <div class="title">Unit Classes</div>
             <div class="header_container">
-                <div class="icon_round">)</div>
+                <div class="icon_small">)</div>
                 <div class="header">Artillery</div>
                 <div class="break"></div>
                 <div class="text">Special abilities:<br>
@@ -606,7 +599,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">*</div>
+                <div class="icon_small">*</div>
                 <div class="header">Air Defence</div>
                 <div class="break"></div>
                 <div class="text"> Special abilities:<br>
@@ -619,7 +612,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">%</div>
+                <div class="icon_small">%</div>
                 <div class="header">Air Fighter</div>
                 <div class="break"></div>
                 <div class="text"> Special abilities:<br>
@@ -632,7 +625,7 @@
             </div>
 
             <div class="header_container">
-                <div class="icon_round">4</div>
+                <div class="icon_small">4</div>
                 <div class="header">Air Bomber</div>
                 <div class="break"></div>
                 <div class="text"> Special abilities:<br>
@@ -646,7 +639,7 @@
         <div class="page">
             <div class="title">Unit Stats</div>
             <div class="header_container">
-                <div class="icon_round">B</div>
+                <div class="icon_small">B</div>
                 <div class="header">Price</div>
                 <div class="break"></div>
                 <div class="text"> The cost of a unit in terms of prestige. Prestige points represent the influence you
@@ -661,7 +654,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">:</div>
+                <div class="icon_small">:</div>
                 <div class="header">Strength</div>
                 <div class="text"> A unit starts with ten strength points. A unit current strength is given on the
                     strength
@@ -675,7 +668,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">;</div>
+                <div class="icon_small">;</div>
                 <div class="header">Fuel</div>
                 <div class="break"></div>
                 <div class="text"> If unit uses fuel for movement it shows how many moves it can do before getting stuck
@@ -686,7 +679,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">&#60;</div>
+                <div class="icon_small">&#60;</div>
                 <div class="header">Ammo</div>
                 <div class="break"></div>
                 <div class="text"> How many attacks a unit can perform. Each attack uses 1 ammo. A unit without ammo
@@ -696,7 +689,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">&#62;</div>
+                <div class="icon_small">&#62;</div>
                 <div class="header">Firing Range</div>
                 <div class="break"></div>
                 <div class="text"> The distance in hexes that the unit can attack an enemy unit. Usually artillery units
@@ -706,7 +699,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">?</div>
+                <div class="icon_small">?</div>
                 <div class="header">Movement Range</div>
                 <div class="break"></div>
                 <div class="text"> The range in hexes that a unit can move in 1 turn. Each unit has a movement point
@@ -719,9 +712,9 @@
             </div>
         </div>
         <div class="page">
-            <div class="title">Unit Stats2</div>
+            <div class="title">Unit Stats</div>
             <div class="header_container">
-                <div class="icon_round">@</div>
+                <div class="icon_small">@</div>
                 <div class="header">Experience</div>
                 <div class="break"></div>
                 <div class="text"> Each time a unit takes part in combat it gains experience, and the more successful it
@@ -742,7 +735,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">"</div>
+                <div class="icon_small">"</div>
                 <div class="header">Entrenchment</div>
                 <div class="break"></div>
                 <div class="text"> Units that have not moved are assumed to dig in each turn even if they attack,
@@ -772,7 +765,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">|</div>
+                <div class="icon_small">|</div>
                 <div class="header">Combat initiative</div>
                 <div class="break"></div>
                 <div class="text"> Initiative is an estimate of a unit ability to react quickly in combat. Initiative is
@@ -783,7 +776,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">'</div>
+                <div class="icon_small">'</div>
                 <div class="header">Spotting range</div>
                 <div class="break"></div>
                 <div class="text"> The distance, in hexes, at which a unit becomes aware of the general location of
@@ -798,9 +791,9 @@
             </div>
         </div>
         <div class="page">
-            <div class="title">Unit Stats3</div>
+            <div class="title">Unit Stats</div>
             <div class="header_container">
-                <div class="icon_round">{</div>
+                <div class="icon_small">{</div>
                 <div class="header">Power vs Hard targets</div>
                 <div class="break"></div>
                 <div class="text"> A value gauging the unit attack capabilities against hard targets, such as tanks,
@@ -809,7 +802,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">$</div>
+                <div class="icon_small">$</div>
                 <div class="header">Power vs Soft targets</div>
                 <div class="break"></div>
                 <div class="text"> A value gauging the unit attack capabilities against soft targets, such as infantry,
@@ -817,7 +810,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">&</div>
+                <div class="icon_small">&</div>
                 <div class="header">Power vs Air targets</div>
                 <div class="break"></div>
                 <div class="text"> A value gauging the unit attack capabilities against air targets, such as tactical
@@ -825,7 +818,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">}</div>
+                <div class="icon_small">}</div>
                 <div class="header">Power vs Naval targets</div>
                 <div class="break"></div>
                 <div class="text"> A value gauging the unit attack capabilities against naval targets, such as
@@ -834,14 +827,14 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">5</div>
+                <div class="icon_small">5</div>
                 <div class="header">Defence vs ground attacker</div>
                 <div class="break"></div>
                 <div class="text">A value gauging the unit ability to withstand attacks by land and naval units.
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">3</div>
+                <div class="icon_small">3</div>
                 <div class="header">Defence vs air attacker</div>
                 <div class="break"></div>
                 <div class="text"> A value gauging the unit ability to withstand attacks by air units. Air units use
@@ -850,7 +843,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">6</div>
+                <div class="icon_small">6</div>
                 <div class="header">Defence in close combat</div>
                 <div class="break"></div>
                 <div class="text"> A value gauging a non-infantry ground unit ability to attack infantry in city or
@@ -866,9 +859,9 @@
 
         </div>
         <div class="page">
-            <div class="title">Unit Stats4</div>
+            <div class="title">Unit Stats</div>
             <div class="header_container">
-                <div class="icon_round">7</div>
+                <div class="icon_small">7</div>
                 <div class="header">Defence in ranged combat</div>
                 <div class="break"></div>
                 <div class="text"> A value gauging the unit ability to withstand ranged attacks by ground units. This
@@ -879,7 +872,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">~</div>
+                <div class="icon_small">~</div>
                 <div class="header">Movement type</div>
                 <div class="break"></div>
                 <div class="text"> The different methods of movement units may use are: leg, towed, wheeled,
@@ -895,7 +888,7 @@
                 </div>
             </div>
             <div class="header_container">
-                <div class="icon_round">`</div>
+                <div class="icon_small">`</div>
                 <div class="header">Target type</div>
                 <div class="break"></div>
                 <div class="text"> The target classification of the unit, either soft, hard, air or naval, which
@@ -1027,8 +1020,6 @@
         </div>
         <div class="page">
             <table class="tblStyle1">
-                <caption>Random abilities 2
-                </caption>
                 <tbody>
                     <th>Bridging
                     </th>
@@ -1189,7 +1180,6 @@
                 <li>Esc - Deselect Unit. With no unit selected toggles Main Menu</li>
             </ul>
         </div>
-    </div>
     </div>
 </body>
 
