@@ -61,34 +61,55 @@
         body {
             font-family: 'Roboto', Arial;
         }
+        section { 
+        	position: relative; 
+        	border-bottom: none; 
+        	/*background-position: center center; */
+        	-webkit-background-size: cover; 
+        	background-size: cover; 
+        	background-repeat: no-repeat; 
+        	background-color: #fafbfb;
+        	padding: 2.5rem !important;
+        	margin-bottom: 4rem !important;
+        	float:left;
+        	width: -webkit-fill-available;
+		}
 
         .title {
-            font-weight: bold;
-            font-size: 18px;
-            text-align: center;
-            color: #33ccff;
+            font-weight: 700;
+            color: #2380fb !important;
+            display: block;
+    		font-size: 1.5em;
+    		margin-block-start: 1em;
+    		margin-block-end: 1em;
+    		margin-inline-start: 0em;
+    		margin-inline-end: 1em;
+    		font-family: "Roboto", Helvetica, Arial, sans-serif;
         }
 
         .subtitle {
             font-weight: normal;
-            font-size: 16px;
-            text-align: center;
+            font-size: 1.25em;
+            /*font-size: 16px;
+            text-align: center;*/
             color: #f90;
+            padding: 0.5em 0;
+
         }
 
         .text {
             font-weight: normal;
             font-family: Roboto, sans-serif;
-            font-size: 13px;
+            /*font-size: 13px;*/
             margin-bottom: 10px;
         }
-        .text:before { content: "\00a0 \00a0 \00a0 \00a0"; }
+        /*.text:before { content: "\00a0 \00a0 \00a0 \00a0"; }*/
 
         .header_container {
-            display: flex;
+            /* display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
+           align-items: center;
+            justify-content: center;*/
 
         }
 
@@ -101,14 +122,22 @@
         .header {
             font-family: 'Roboto', sans-serif;
             color: #f90;
-            flex-grow: 1;
-            padding-left: 10px;
+            font-size: 1.25em;
+            /*padding-left: 10px;*/
+            margin: 0.5em 0;
         }
         .icon_small {
             font-family: openpanzer-menu;
             font-weight: normal;
             font-size: 26px;
-            text-align: center;
+            /*text-align: center;*/
+            float: left;
+            margin-right: 0.5em;
+        }
+        .inline {
+        	 float: none;
+        	 vertical-align: middle;
+        	 margin-right: 0;
         }
         .icon_round,
         .icon_misc_round {
@@ -123,7 +152,7 @@
             font-family: openpanzer-menu;
             font-weight: normal;
             font-size: 40px;
-            text-align: center;
+            /*text-align: center;*/
             text-shadow: none;
             background-color: #000;
             background-repeat: no-repeat;
@@ -150,7 +179,7 @@
             font-family: openpanzer;
         }
 
-        header,
+        /*header,*/
         .row {
             display: flex;
             /* aligns all child elements (flex items) in a row */
@@ -184,17 +213,26 @@
         .grey {
             color: #BDBDBD
         }
-
-        .textCenter {
-            text-align: center;
+        .center {
+        	text-align: center;
+        }
+        .copy {
+        	 font-size: 0.8em;
+        	 color: #888;
         }
 
+       /* .textCenter {
+            text-align: center;
+        }*/
+
         .tblStyle1 {
+        	width:100%;
             border: solid 1px #DDEEEE;
             border-collapse: collapse;
             border-spacing: 0;
-            font-size: 13px;
-            margin: 0 auto;
+            /*font-size: 13px;
+            margin: 0 auto;*/
+            margin-bottom: 1em;
         }
 
         .tblStyle1 thead th {
@@ -220,37 +258,32 @@
             flex-wrap: wrap;
         }
 
-        .page {
-            box-sizing: border-box;
-            border: 1px solid black;
-            min-width:600px;
-            max-width: 600px;
-            height: 800px;
-            padding: 3px;
-        }
+        
 
         .twoColumnsInARow {
-            display: flex;
+            /*display: flex;
             flex-direction: column;
             justify-content:center;
-            flex-wrap: wrap;
+            flex-wrap: wrap;*/
         }
 
         .unitSemiContainer {
-            display: flex;
+            /*display: flex;
             flex-wrap: nowrap;
             flex-direction: row;
             max-width: 450px;
             justify-content: space-around;
-            margin: 0 auto;
+            margin: 0 auto;*/
+            margin-bottom: 1em;
         }
     </style>
 </head>
 
 <body>
+	<h1 class="center">Panzer Marshal</h1><h3 class="center" style="color:#888;">Turn Based World War 2 Strategy Game Manual v1.0</h5>
     <div class="container">
-        <div class="page">
-            <div class="title"> Unit</div>
+        <section>
+            <div class="title">Unit</div>
             <div class="twoColumnsInARow">
                 <div class="unitSemiContainer">
                     <div><img src="resources/ui/manual/unit.png"></div>
@@ -323,7 +356,11 @@
                 </table>
             </div>
             </div>
+		</section>
+	</div>
 
+	<div class="container">
+        <section>
             <div class="title"> Weather</div>
             <table class="tblStyle1">
                 <tr>
@@ -371,11 +408,11 @@
                     <td>Snowing</td>
                     <td>Air units can't attack. Will turn Ground to Frozen</td>
                 </tr>
-
-            </table>
-
-        </div>
-        <div class="page">
+			</table>
+        </section>
+	</div>
+    <div class="container">   
+        <section>
             <div class="title"> General Concepts</div>
             <div class="subtitle">Turns</div>
             <div class="text">
@@ -384,7 +421,7 @@
                 In each turn you, your allies, and your opponents are given a chance to move units, attack enemy units,
                 resupply units, and
                 so on. When you finished all your orders you can press the End Turn button <span
-                    class="icon_small">t</span> from the right side of the screen.
+                    class="icon_small inline">t</span> from the right side of the screen.
             </div>
             <div class="subtitle">Combat</div>
             <div class="text">
@@ -449,10 +486,11 @@
                 Some scenarios can only be "won" by playing the game until last turn, usually this is noted in the
                 briefing at the start of the scenario.
             </div>
-        </div>
-
-        <div class="page">
-            <div class="title"> Unit Actions</div>
+        </section>
+    </div>
+	<div class="container">   
+        <section>
+            <div class="title">Unit Actions</div>
             <div class="header_container">
                 <div class="icon_small">[</div>
                 <div class="header">Mount/Dismount</div>
@@ -519,8 +557,11 @@
                     unit.
                 </div>
             </div>
-        </div>
-        <div class="page">
+        </section>
+    </div>
+
+    <div class="container">   
+        <section>
             <div class="title">Unit Classes</div>
             <div class="header_container">
                 <div class="icon_small">(</div>
@@ -581,10 +622,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
 
-        <div class="page">
-            <div class="title">Unit Classes</div>
             <div class="header_container">
                 <div class="icon_small">)</div>
                 <div class="header">Artillery</div>
@@ -635,8 +673,11 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="page">
+        </section>
+    </div>
+    
+    <div class="container">   
+        <section>
             <div class="title">Unit Stats</div>
             <div class="header_container">
                 <div class="icon_small">B</div>
@@ -710,9 +751,6 @@
                     movement type.
                 </div>
             </div>
-        </div>
-        <div class="page">
-            <div class="title">Unit Stats</div>
             <div class="header_container">
                 <div class="icon_small">@</div>
                 <div class="header">Experience</div>
@@ -789,9 +827,6 @@
                     within your unit spotting range are automatically revealed.
                 </div>
             </div>
-        </div>
-        <div class="page">
-            <div class="title">Unit Stats</div>
             <div class="header_container">
                 <div class="icon_small">{</div>
                 <div class="header">Power vs Hard targets</div>
@@ -856,10 +891,6 @@
                     this makes infantry more dangerous in difficult terrain.
                 </div>
             </div>
-
-        </div>
-        <div class="page">
-            <div class="title">Unit Stats</div>
             <div class="header_container">
                 <div class="icon_small">7</div>
                 <div class="header">Defence in ranged combat</div>
@@ -896,8 +927,11 @@
                     which attack values an opponent uses against the unit.
                 </div>
             </div>
-        </div>
-        <div class="page">
+        </section>
+    </div>
+
+    <div class="container">
+    	<section>
             <div class="title"> Unit Leaders</div>
             <div class="text">
                 In battle, when a unit reaches a new level of experience (every 100 experience), a star or cross may
@@ -908,8 +942,7 @@
             </div>
 
             <table class="tblStyle1">
-                <caption>Automatic abilities according to unit class
-                </caption>
+                <div class="header">Automatic abilities according to unit class</div>
                 <tbody>
                     <tr>
                         <th>Air Defense
@@ -971,8 +1004,7 @@
                 <tfoot></tfoot>
             </table>
             <table class="tblStyle1">
-                <caption>Random abilities
-                </caption>
+                <div class="header">Random abilities</div>
                 <tbody>
                     <tr>
                         <th>Aggressive Attack
@@ -1012,19 +1044,6 @@
                         </th>
                         <td>When moving the unit treats passable river hexes as rough terrain.
                         </td>
-                    </tr>
-                    <tr>
-                </tbody>
-                <tfoot></tfoot>
-            </table>
-        </div>
-        <div class="page">
-            <table class="tblStyle1">
-                <tbody>
-                    <th>Bridging
-                    </th>
-                    <td>When moving the unit treats passable river hexes as rough terrain.
-                    </td>
                     </tr>
                     <tr>
                         <th>Combat Support
@@ -1136,16 +1155,6 @@
                         <td>The unit's spotting range is increased by one hex.
                         </td>
                     </tr>
-                </tbody>
-                <tfoot></tfoot>
-            </table>
-
-        </div>
-        <div class="page">
-            <table class="tblStyle1">
-                <caption>Random abilities 3
-                </caption>
-                <tbody>
                     <tr>
                         <th>Street Fighter
                         </th>
@@ -1161,25 +1170,80 @@
                 </tbody>
                 <tfoot></tfoot>
             </table>
-            <div class="title"> Keyboard Shortcuts</div>
-            <ul>
-                <li>E - Embark/Disembark</li>
-                <li>M - Mount/Dismount</li>
-                <li>S - Supply</li>
-                <li>R - Replacements</li>
-                <li>O - Over-strength</li>
-                <li>U - Undo last move if possible</li>
-                <li>N - Select Next Unit</li>
-                <li>P - Select Previous Unit</li>
-                <li>A - Toggle Air/Ground Mode</li>
-                <li>H - Toggle Hex marks on/off (also adds back Labels)</li>
-                <li>L - Hides Labels over the cities/objectives/units</li>
-                <li>B - Toggle Buy/Upgrade menu</li>
-                <li>I - Toggle Inspect unit</li>
-                <li>Z - Toggle Strategic Map</li>
-                <li>Esc - Deselect Unit. With no unit selected toggles Main Menu</li>
-            </ul>
-        </div>
+    </section>
+    </div>
+    <div class="container">
+    	<section>
+            <div class="title">Keyboard Shortcuts</div>
+            <table class="tblStyle1">
+                <tbody>
+                    <tr>
+                        <th>E</th>
+                        <td>Embark/Disembark</td>
+                    </tr>
+                    <tr>
+                        <th>M</th>
+                        <td>EMount/Dismount</td>
+                    </tr>
+                    <tr>
+                        <th>S</th>
+                        <td>Supply</td>
+                    </tr>
+                    <tr>
+                        <th>R</th>
+                        <td>Replacements</td>
+                    </tr>
+                    <tr>
+                        <th>O</th>
+                        <td>Over-strength</td>
+                    </tr>
+                    <tr>
+                        <th>U</th>
+                        <td>Undo last move if possible</td>
+                    </tr>
+                    <tr>
+                        <th>N</th>
+                        <td>Select Next Unit</td>
+                    </tr>
+                    <tr>
+                        <th>P</th>
+                        <td>Select Previous Unit</td>
+                    </tr>
+                    <tr>
+                        <th>A</th>
+                        <td>Toggle Air/Ground Mode</td>
+                    </tr>
+                     <tr>
+                        <th>H</th>
+                        <td>Toggle Hex marks on/off (also adds back Labels)</td>
+                    </tr>
+                    <tr>
+                        <th>L</th>
+                        <td>Hides Labels over the cities/objectives/units</td>
+                    </tr>
+                    <tr>
+                        <th>B</th>
+                        <td>Toggle Buy/Upgrade menu</td>
+                    </tr>
+                    <tr>
+                        <th>I</th>
+                        <td>Toggle Inspect unit</td>
+                    </tr>
+                    <tr>
+                        <th>Z</th>
+                        <td>Toggle Strategic Map</td>
+                    </tr>
+                    <tr>
+                        <th>Esc</th>
+                        <td>Deselect Unit. With no unit selected toggles Main Menu</td>
+                    </tr>
+                </tbody>
+                <tfoot></tfoot>
+            </table>    
+        </section>
+    </div>
+    <div class="center">
+    	<span class="copy">&copy; 2020 Panzer Marshal - Turn Based World War 2 Strategy Game Manual v1.0</span>
     </div>
 </body>
 
