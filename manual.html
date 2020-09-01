@@ -276,6 +276,29 @@
             margin: 0 auto;*/
             margin-bottom: 1em;
         }
+
+        @media screen 
+          and (min-device-width: 1200px) 
+          and (max-device-width: 1920px)  { 
+            .container {
+            display: inline-block;
+            float: left;
+            width: 50%;
+            vertical-align: text-top;
+        }
+            section { 
+            height: 800px;
+            overflow: scroll;
+            border: 3px solid #eee; 
+            -webkit-background-size: cover; 
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-color: #fafbfb;
+            padding: 2.5rem !important;
+            margin: 0.5rem;
+            margin-bottom: 4rem !important;
+            }
+        }
     </style>
 </head>
 
