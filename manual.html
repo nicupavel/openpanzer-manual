@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="resources/ui/page/icon/icon.png" type="image/png" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="resources/css/pico.min.css">
     <script>
         function $(id) { return document.getElementById(id); }
 
@@ -80,7 +80,7 @@
             background-color: #000;
             background-repeat: no-repeat;
             color: #f8e064;
-            z-index: 20;
+            /* z-index: 0; */
             /* margin: 0 auto; */
             display: inline-block;
         }
@@ -157,33 +157,68 @@
             float: none;
             vertical-align: middle;
             margin-right: 0;
-        }        
+        }
+
+        #smClose {
+            cursor: pointer;
+            font-size: 32px;
+            margin-right: 5px;
+        }
+
+        nav {
+            position: fixed;
+            background-color: var(--card-background-color);
+            width: 100%;
+        }
+
+        nav img {
+            position: absolute;
+            height: auto;
+            width: 60px;
+            aspect-ratio: 1/1; 
+            margin-left:10px; 
+            margin-top:-10px
+        }
     </style>
 </head>
 
 <body>
+    <nav>
+        <ul>
+            <li>
+                <img src="resources/ui/page/icon/icon.png">
+                <details role="list">
+                    <summary aria-haspopup="listbox" role="link">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </summary>
+                    <ul role="listbox">
+                        <li><a href="#nav_concepts">Concepts</a></li>
+                        <li><a href="#nav_unit_actions">Unit Actions</a></li>
+                        <li><a href="#nav_unit_classes">Unit Classes</a></li>
+                        <li><a href="#nav_unit_classes">Unit Stats</a></li>
+                        <li><a href="#nav_terrain">Terrain</a></li>
+                        <li><a href="#nav_leaders">Leaders</a></li>
+                        <li><a href="#nav_keyboard">Shortcuts</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <div>
+                    <div style="font-size: 24px; text-align: center;">𝕻𝖆𝖓𝖟𝖊𝖗 𝕸𝖆𝖗𝖘𝖍𝖆𝖑</div>
+                    <div style="font-size: 12px; text-align: right;">Game Manual v1.1</div>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <div class="iconsMenu" id="smClose" onclick="window.close();">0</div>
+            </li>
+        </ul>
+    </nav>
     <main class="container">
-
-        <!-- <h1>𝕻𝖆𝖓𝖟𝖊𝖗 𝕸𝖆𝖗𝖘𝖍𝖆𝖑</h1> -->
-        <nav>
-            <ul>
-                <li>
-                    <hgroup>
-                        <h1>𝕻𝖆𝖓𝖟𝖊𝖗 𝕸𝖆𝖗𝖘𝖍𝖆𝖑</h1>
-                        <p>Turn Based World War 2 Strategy Game Manual v1.1</p>
-                    </hgroup>
-                </li>
-            </ul>
-            <ul>
-                <li><a href="#nav_concepts">Concepts</a></li>
-                <li><a href="#nav_unit_actions">Units</a></li>
-                <li><a href="#nav_terrain">Terrain</a></li>
-                <li><a href="#nav_leaders">Leaders</a></li>
-                <li><a href="#nav_keyboard">Shortcuts</a></li>
-            </ul>
-        </nav>
-
-        </hgroup>
+        <br><br>
         <section id="nav_unit">
             <h2>Unit</h2>
             <div><img src="resources/ui/manual/unit.png"></div>
@@ -591,8 +626,10 @@
                 points, and a unit reduced to zero strength points is destroyed. Each strength point
                 makes an individual attack on the enemy using the unit attack and defense values. The number of
                 strength points used for attack is also halved by rain or snow for ground troops and by overcast
-                weather for air units (air units may not attack in rain or snow). The units are considered to be regiments/brigades, 
-                with the exception of reconnaissance units (and perhaps some anti-aircraft units), which would remain battalions. 
+                weather for air units (air units may not attack in rain or snow). The units are considered to be
+                regiments/brigades,
+                with the exception of reconnaissance units (and perhaps some anti-aircraft units), which would remain
+                battalions.
             </p>
             <div class="headingIcon">
                 <div class="icon_round">;</div>
