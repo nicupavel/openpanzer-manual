@@ -77,6 +77,7 @@
             font-size: var(--icon-font-size);
             text-align: center;
             text-shadow: none;
+            text-indent: 0;
             background-color: #000;
             background-repeat: no-repeat;
             color: #f8e064;
@@ -179,6 +180,9 @@
             margin-left:10px; 
             margin-top:-10px
         }
+        p {
+            text-indent: 1em;
+        }
     </style>
 </head>
 
@@ -207,7 +211,7 @@
             <li>
                 <div>
                     <div style="font-size: 24px; text-align: center;">𝕻𝖆𝖓𝖟𝖊𝖗 𝕸𝖆𝖗𝖘𝖍𝖆𝖑</div>
-                    <div style="font-size: 12px; text-align: right;">Game Manual v1.1</div>
+                    <div style="font-size: 12px; text-align: right;">Game Manual v1.2</div>
                 </div>
             </li>
         </ul>
@@ -221,7 +225,7 @@
         <br><br>
         <section id="nav_unit">
             <h2>Unit</h2>
-            <div><img src="resources/ui/manual/unit.png"></div>
+            <div><img src="resources/ui/manual/unit-descriptions.png"></div>
             <div class="grid">
                 <figure>
                     <table role="grid">
@@ -236,7 +240,7 @@
                         </tr>
                         <tr>
                             <td><img src="resources/ui/indicators/unit-fire-no-ammo.png"></td>
-                            <td>No. No ammo.</td>
+                            <td>No. No ammo. Can't return fire.</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -244,7 +248,7 @@
                         </tr>
                     </table>
                 </figure>
-                <figure>
+                <figure style="overflow: hidden;">
                     <table role="grid">
                         <thead>
                             <th colspan="4">
@@ -264,7 +268,7 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td>moved</td>
+                            <td>moved (greyed out)</td>
                             <td><span class="fontCore boxStr bgBlack grey">10</span></td>
                             <td><span class="fontCore boxStr bgGreen grey">10</span></td>
                         </tr>
@@ -276,7 +280,7 @@
                         </tr>
                         <tr>
                             <td></td>
-                            <td>moved</td>
+                            <td>moved (greyed out)</td>
                             <td><span class="fontAux boxStr bgBlack grey">10</span></td>
                             <td><span class="fontAux boxStr bgGreen grey">10</span></td>
                         </tr>
@@ -297,7 +301,7 @@
                             <td><img src="resources/ui/indicators/unit-leader-axis.png"></td>
                             <td><img src="resources/ui/indicators/unit-leader-allied.png"></td>
                         </tr>
-
+                        <tr><td colspan="2" style="text-align: center;">Missing: No leader received yet</td></tr>
                     </table>
                 </figure>
             </div>
@@ -308,10 +312,12 @@
             <p>
                 Battles (scenarios) last a certain number of turns and the current turn number and maximum turns is
                 shown in he top left corner of the screen.
+            </p>
+            <p>
                 In each turn you, your allies, and your opponents are given a chance to move units, attack enemy
                 units, resupply units, and
-                so on. When you finished all your orders you can press the End Turn button <span
-                    class="icon_round inline">t</span>
+                so on. When you finished all your orders you can press the End Turn button 
+                <span class="icon_round inline">t</span>
                 from the right side of the screen.
             </p>
             <h4>Combat</h4>
@@ -321,18 +327,24 @@
                 This reticule shows the expected losses in strength points for both sides; your projected
                 casualties are listed below your flag, and your enemies losses are listed under the flag of that
                 unit's country.
+            </p>
+            <p>
                 Keep in mind that these are estimated losses; although based on the relative attack and defense
                 values, terrain, and experience modifiers, they may not be the same in actual battle! In any
-                conflict there
-                is a random factor and besides that, the estimated values don't take in account all the factors.
-                It's up to you
-                to decide the actual results.
+                conflict there is a random factor and besides that, the estimated values don't take in account all the factors.
+                It's up to you to decide the actual results.
+            </p>
+            <p>
                 If you decide to attack, click when the attack reticule is over the enemy unit.
                 As battle ensues, unit losses are indicated on the unit strength plaques, and loses are displayed by
-                a popping number over each unit.
+                a popping number over each unit.<br>
                 A unit may move and attack, or attack then move, with the exception of artillery,
                 air defense, or anti-tank units which cannot attack after moving (with exception of self-propelled
                 units).
+            </p>
+            <p>
+                A unit getting more than 60% casualties in a combat will <mark>retreat</mark> in a random adjacent hex. If no space to retreat
+                it will <mark>surrender</mark> (same result as being destroyed)
             </p>
 
             <h4>Core and Auxiliary Units</h4>
@@ -340,6 +352,8 @@
                 In campaign play, your forces for a battle may contain both core and auxiliary units. Core units are
                 the heart of your army, units which you deploy for every battle, and go with you to each new
                 scenario.
+            </p>
+            <p>
                 However, you may also receive or be put in command of auxiliaries, units which are given to you for
                 the duration of a
                 particular battle scenario, to aid you in your mission. Auxiliaries do not continue to the next
@@ -355,6 +369,8 @@
                 control of an enemy unit, your unit's movement is stopped and it must either attack or end its turn,
                 unless it is
                 a recon unit.
+            </p>
+            <p>
                 If your unit was ordered to move to a point which takes it through a hex occupied by a previously
                 hidden enemy unit, your unit is <mark>surprised</mark> by the enemy unit, and your unit's turn ends
                 after combat is
@@ -373,17 +389,19 @@
                 Battles are won by taking or holding some or all of the Victory Objective hexes, which are
                 represented by hexes with gold-bordered flags on the Battlefield and Strategic Map. Capturing towns,
                 supply points, ports, and airfields that are not Victory Objectives gains you prestige points, but
-                does not
-                affect the victory conditions, so you should always focus on capturing the objectives you have been
+                does not affect the victory conditions, so you should always focus on capturing the objectives you have been
                 ordered to take.
                 Destroying all enemy units will also trigger a victory.
+            </p>
+            <p>
                 Depending on how fast you capture all objectives victories can be brilliant, normal or tactical and
                 each give a certain amount of prestige points. Brillian victories give the most prestige points and
                 you are also rewarded with a <ins>prototype</ins> unit for your core army in the next scenario.
+            </p>
+            <p>
                 If you don't meet your objectives in the maximum number of turns the battle is lost and depending on
                 campaign path flow it can also result in ending the campaign. Some scenarios can only be "won" by
-                playing the game until
-                last turn, usually this is noted in the briefing at the start of the scenario.
+                playing the game until last turn, usually this is noted in the briefing at the start of the scenario.
             </p>
         </section>
         <section id="nav_weather">
@@ -459,7 +477,7 @@
                 a
                 number bigger than 0. The unit
                 must <mark>not have moved in the current turn </mark> to be able to Embark. Only certain classes of
-                units can embark in a plane: <ins>infantry, light anti-tank, and light artillery</ins>.
+                units can embark in a plane: <ins>infantry (leg), light anti-tank, and light artillery (wheeled)</ins>.
             </p>
             <div class="headingIcon">
                 <div class="icon_round">!</div>
@@ -621,14 +639,12 @@
             </div>
 
             <p> A unit starts with 10 strength points. A unit current strength is given on the strength
-                tag,
-                below the unit icon on the Battlefield. Casualties taken in battle are represented by a loss of strength
+                tag, below the unit icon on the Battlefield. Casualties taken in battle are represented by a loss of strength
                 points, and a unit reduced to zero strength points is destroyed. Each strength point
                 makes an individual attack on the enemy using the unit attack and defense values. The number of
-                strength points used for attack is also halved by rain or snow for ground troops and by overcast
+                strength points used for attack is also <mark>halved</mark> by rain or snow for ground troops and by overcast
                 weather for air units (air units may not attack in rain or snow). The units are considered to be
-                regiments/brigades,
-                with the exception of reconnaissance units (and perhaps some anti-aircraft units), which would remain
+                regiments/brigades, with the exception of reconnaissance units (and perhaps some anti-aircraft units), which would remain
                 battalions.
             </p>
             <div class="headingIcon">
@@ -680,16 +696,17 @@
             </div>
 
             <p> Each time a unit takes part in combat it gains experience, and the more successful it is
-                in
-                combat, the
-                more experience points it gains. The maximum experience level a unit can achieve is 10.
+                in combat, the more experience points it gains. The maximum experience level a unit can achieve is 6 (600 experience total).
+            </p>
+            <p>
                 When two units fight, their relative experience levels affect combat, and help determine relative
                 casualties. Experience also determines overstrength size, reduces the risk of rugged defense, and
                 modifies initiative. Units with two or three experience levels should be considered veteran troops
-                and
-                those with four or five levels elite troops. Veteran units sustain fewer casualties and inflict more
-                casualties than a less experienced unit. Units
-                gain experience by fighting and gain the most by destroying, or forcing into retreat, more
+                and those with four or five levels elite troops. Veteran units sustain fewer casualties and inflict more
+                casualties than a less experienced unit. 
+            </p>
+            <p>
+                Units gain experience by fighting and gain the most by destroying, or forcing into retreat, more
                 experienced
                 enemy units and units with better equipment. Making veteran and elite units overstrength is valuable
                 because they are better able to withstand and
@@ -703,26 +720,26 @@
             <p> Units that have not moved are assumed to dig in each turn even if they attack, resupply,
                 and so on.
                 Each turn the unit does not move, it entrenches further. If a unit moves out of the hex, it loses
-                all
-                its
-                entrenchment levels,
+                all its entrenchment levels.
+            </p>
+            <p>
                 All terrain types have a base entrenchment level from zero to three, which ground units in that hex
-                with
-                lower entrenchment levels automatically obtain at the end of their turn. This number is not added to
-                the unit entrenchment level; it replaces it. Base entrenchment levels are: three for cities, two for
+                with lower entrenchment levels automatically obtain at the end of their turn. This number is not added to
+                the unit entrenchment level; it replaces it. Base entrenchment levels are: 3 for cities, 2 for
                 forests, bocage (intertwined hedgerows), and mountains, one for rough terrain and hills, and zero
-                for
-                everything else. Units can entrench up to a maximum of five levels above the base entrenchment level
+                for everything else. Units can entrench up to a maximum of five levels above the base entrenchment level
                 for the terrain.
+            </p>
+            <p>
                 Entrenchment levels are reduced by attacks or bombardment of entrenched ground units. Each attack,
                 whether it is successful or not, reduces the unit entrenchment level by one level. Repeated attacks
-                in
-                a single turn can even reduce the entrenchment level below the base level for the terrain, thus
+                in a single turn can even reduce the entrenchment level below the base level for the terrain, thus
                 facilitating further attacks during the same turn. A proven way to attack a strongly entrenched unit
-                is
-                with a combination of aerial and artillery preparatory bombardment, followed by ground attacks by
-                one
-                or more units. Engineer units, with the exception of bridge engineers, ignore entrenchment, making
+                is with a combination of aerial and artillery preparatory bombardment, followed by ground attacks by
+                one or more units. 
+            </p>
+            <p>
+                Engineer units, with the exception of bridge engineers, ignore entrenchment, making
                 them valuable units during this type of assault.
             </p>
             <div class="headingIcon">
@@ -848,18 +865,14 @@
             <h2>Terrain</h2>
             <p>
                 Careful analysis of terrain is vital to a well conceived and executed battle strategy. Terrain
-                affects
-                movement, since some types of ground are more difficult to negotiate than others. Also, some types
-                of
-                terrain
-                provide greater base entrenchment, making those areas more defensible, and more difficult to clear
-                of
-                enemy
-                defenders.
-                <br>
+                affectsmovement, since some types of ground are more difficult to negotiate than others. Also, some types
+                of terrain provide greater base entrenchment, making those areas more defensible, and more difficult to clear
+                of enemy defenders.
+            </p>
+            <p>               
                 In difficult terrain, such as cities and mountains, defending and attacking infantry shoot against
                 the
-                close defense number of the enemy unit, usually placing the non-infantry unit at a severe
+                <mark>close defense stat</mark> of the enemy unit, usually placing the non-infantry unit at a severe
                 disadvantage. The exception to this being that infantry may attack another unit that succeeds in
                 putting up a rugged defense, in which case the attacker shoots at the defenders ground defense
                 value. Infantry and artillery can be highly effective when defending from difficult terrain,
@@ -870,7 +883,8 @@
                 dominant in clear terrain, where defending infantry and artillery need to be entrenched to survive
                 an
                 armoured attack.
-                <br>
+            </p>
+            <p>
                 Rivers are a terrain type that deserves special mention. Entering a river hex ends a ground unit's
                 movement, except when the river is frozen. It may exit the river hex normally the following turn.
                 Dismounted bridging engineers may serve as bridges, eliminating this penalty for the hexes engineers
@@ -878,7 +892,8 @@
                 engineer unit moves into a river hex, a pontoon bridge appears. Friendly units may then move over
                 the
                 bridge icon. Note: Some rivers are too wide to cross with bridging engineers.
-                <br>
+            </p>
+            <p>
                 The table below shows, for each type of terrain, how fast your unit entrenches, combat initiative and
                 movement cost.
                 For movement costs ● means unit can enter but will consume all movements points and ■ means an unit
@@ -1039,56 +1054,56 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Air Defense
+                                <th><div class="icon_round">*</div>
                                 </th>
                                 <td>Mechanized Veteran</td>
                                 <td>A self-propelled Air Defense unit may move and fire in the same turn.
                                 </td>
                             </tr>
                             <tr>
-                                <th>Anti-Tank
+                                <th><div class="icon_round">/</div>
                                 </th>
                                 <td>Tank Killer</td>
                                 <td>An Anti-Tank unit will not receive a penalty for movement into combat .
                                 </td>
                             </tr>
                             <tr>
-                                <th>Artillery
+                                <th><div class="icon_round">)</div>
                                 </th>
                                 <td>Marksman</td>
                                 <td>The artillery unit's attack range is increased by one hex.
                                 </td>
                             </tr>
                             <tr>
-                                <th>Fighter
+                                <th><div class="icon_round">%</div>
                                 </th>
                                 <td>Skilled Interceptor</td>
                                 <td>The unit can intercept multiple enemy fighters in the defensive phase.
                                 </td>
                             </tr>
                             <tr>
-                                <th>Infantry
+                                <th><div class="icon_round">(</div>
                                 </th>
                                 <td>Tenacious Defense</td>
                                 <td>The infantry unit's ground defense factor is increased by 4.
                                 </td>
                             </tr>
                             <tr>
-                                <th>Reconnaissance
+                                <th><div class="icon_round">=</div>
                                 </th>
                                 <td>Elite Recon Veteran</td>
                                 <td>The recon unit's spotting range is increased by two hexes.
                                 </td>
                             </tr>
                             <tr>
-                                <th>Tactical Bomber
+                                <th><div class="icon_round">4</div>
                                 </th>
                                 <td>Skilled Assault</td>
                                 <td>The bomber cannot be surprised ("out of the sun") while moving.
                                 </td>
                             </tr>
                             <tr>
-                                <th>Tank
+                                <th><div class="icon_round">]</div>
                                 </th>
                                 <td>Aggressive Maneuver</td>
                                 <td>The tank's movement factor is increased by 1.
@@ -1100,7 +1115,8 @@
                 <figure>
                     <table role="grid">
                         <thead>
-                            <h4>Random abilities</h4< /caption>
+                            <h4>Random abilities</h4>      
+                        </thead>                          
                         <tbody>
                             <tr>
                                 <th>Aggressive Attack
